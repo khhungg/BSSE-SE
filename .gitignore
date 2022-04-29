@@ -1,1 +1,2 @@
-showAllPerUserCPU.sh
+__pycache__/
+models/__pycache__/
