@@ -16,3 +16,5 @@ wait
 
 # print own CPU usage after all spawned processes completed
 top -b -n 1 -u "$own" | awk -v user=$own -v CPUS=$cpus 'NR>7 { sum += $9; } END { print user, sum; }'
+
+print 1111
