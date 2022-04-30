@@ -25,7 +25,7 @@ For each `.wav` file, you need to first convert it into 16kHz format by any audi
 sox <48K.wav> -r 16000 -c 1 -b 16 <16k.wav>
 ```
 
-#### Enhancement model pretrained weight
+#### Pretrained enhancement model weight
 Please download the model weights from [here](https://drive.google.com/drive/folders/1cwDoGdF44ExQt__B6Z44g3opUdH-hJXE?usp=sharing), and make a folder named `save_model` then put the weight file under the folder. 
 
 #### Result on Voice Bank--Demand
@@ -33,6 +33,17 @@ Experiment Date | PESQ | CSIG | CBAK | COVL
 -|-|-|-|-
 2022-04-30 | 3.20 | 4.52 | 3.58 | 3.88
 
+## Citation
+Please cite the following paper if you find the codes useful in your research.
+
+```
+@article{hung2022boosting,
+  title={Boosting Self-Supervised Embeddings for Speech Enhancement},
+  author={Hung, Kuo-Hsuan and Fu, Szu-wei and Tseng, Huan-Hsin and Chiang, Hsin-Tien and Tsao, Yu and Lin, Chii-Wann},
+  journal={arXiv preprint arXiv:2204.03339},
+  year={2022}
+}
+```
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
