@@ -1,5 +1,5 @@
 # BSSE-SE
-This is the official implementation of our paper *"Boosting Self-Supervised Embeddings for Speech Enhancement"*
+This is the official implementation of our paper *"[Boosting Self-Supervised Embeddings for Speech Enhancement](https://arxiv.org/abs/2204.03339)"*
 
 ## Requirements
 - pytorch 1.10.2
