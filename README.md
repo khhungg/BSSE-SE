@@ -49,7 +49,9 @@ python main.py \
 ```
 
 add `--mode test` in the command line and the rest remain the same to evaluate the speech enhancement model:
-```python main.py --mode test ```
+```
+python main.py --mode test ... 
+```
 
 
 ## Citation
