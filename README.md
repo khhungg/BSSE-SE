@@ -28,7 +28,7 @@ sox <48K.wav> -r 16000 -c 1 -b 16 <16k.wav>
 ```
 
 ### Pretrained enhancement model weight
-Please download the model weights from [here](https://drive.google.com/drive/folders/1cwDoGdF44ExQt__B6Z44g3opUdH-hJXE?usp=sharing), and make a folder named `save_model` then put the weight file under the folder. 
+Please download the model weights from [here](https://drive.google.com/file/d/1s2EzhwCEvfJ-4COIz4LcdVXI8WexsJZE/view?usp=sharing), and make a folder named `save_model` then put the weight file under the folder. 
 
 ### Result on Voice Bank--Demand
 Experiment Date | PESQ | CSIG | CBAK | COVL
