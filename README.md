@@ -36,7 +36,7 @@ Experiment Date | PESQ | CSIG | CBAK | COVL
 2022-04-30 | 3.20 | 4.52 | 3.58 | 3.88
 
 ## Usage
-Run the following command to train the speech enhancement model:
+Please download the pretrained [WavLM](https://github.com/microsoft/unilm/tree/master/wavlm) first and put the weight under the `save_model` folder (e.g, `save_model/WavLM-Base+.pt`). Run the following command to train the speech enhancement model:
 ```
 python main.py \
     --data_folder <root/dir/of/dataset> 
