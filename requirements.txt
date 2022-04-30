@@ -1,0 +1,9 @@
+torchaudio==0.10.2
+torch==1.10.2
+tqdm==4.60.0
+tensorboardx==2.2
+scikit-learn==0.24.1
+pandas==1.2.4
+pystoi==0.3.3
+pesq==0.0.3
+numpy==1.20.3
