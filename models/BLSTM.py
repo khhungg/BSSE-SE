@@ -2,8 +2,9 @@ import torch, pdb
 import torch.nn as nn
 # from unilm.wavlm.WavLM import WavLM, WavLMConfig 
 from models.WavLM import WavLM, WavLMConfig 
-
+import fairseq
 from util import get_feature, feature_to_wav
+
 
 class _Blstm(nn.Module):
     def __init__(self,input_size,hidden_size,num_layers=1,dropout=0):
@@ -15,15 +16,17 @@ class _Blstm(nn.Module):
         out = out[:,:,:int(out.size(-1)/2)]+out[:,:,int(out.size(-1)/2):] 
         return out
 
-class SE_model(nn.Module):
+class BLSTM(nn.Module):
     
     def __init__(self,args):
         super().__init__()
         self.args = args
         self.transform = get_feature()
-        if not args.feature=='log1p':
+        if not args.feature=='raw':
             self.dim = 768 if 'base' in args.size else 1024
             weight_dim = 13 if 'base' in args.size else 25
+            if not args.ssl_model=='wavlm':
+                weight_dim = weight_dim-1
             if args.weighted_sum:
                 self.weights = nn.Parameter(torch.ones(weight_dim))
                 self.softmax = nn.Softmax(-1)
@@ -32,7 +35,7 @@ class SE_model(nn.Module):
                     layer_norm.append(nn.LayerNorm(self.dim))
                 self.layer_norm = nn.Sequential(*layer_norm)
             
-        if args.feature=='log1p':
+        if args.feature=='raw':
             embed = 201
         elif args.feature=='ssl':
             embed = self.dim
@@ -51,7 +54,7 @@ class SE_model(nn.Module):
 #         generate log1p
         (log1p,_phase),_len = self.transform(wav,ftype='log1p')
 #         generate SSL feature
-        if self.args.feature!='log1p':
+        if self.args.feature!='raw':
             if self.args.weighted_sum:
                 ssl = torch.cat(layer_reps,2)
             else:
@@ -80,38 +83,9 @@ class SE_model(nn.Module):
         if output_wav:
             out = feature_to_wav((out,_phase),_len)
         return out
-
-class BLSTM(nn.Module):
     
-    def __init__(self,args):
-        super().__init__()
-        if not args.feature=='log1p':
-            checkpoint = torch.load('./save_model/WavLM-Base+.pt') if 'base' in args.size else torch.load('./save_model/WavLM-Large.pt')
-            cfg = WavLMConfig(checkpoint['cfg'])
-            self.model_SSL = WavLM(cfg)
-            self.model_SSL.load_state_dict(checkpoint['model'])
-        self.args = args   
-        self.model_SE = SE_model(args)
-        self.model_SE.apply(self.weights_init)
-        
-    def weights_init(self,m):
-        if isinstance(m, nn.Conv1d) or isinstance(m, nn.Linear):
-            for name, param in m.named_parameters():
-                if 'bias' in name:
-                    nn.init.constant_(param, 0.0)
-                elif 'weight' in name:
-                    nn.init.xavier_normal_(param)
-                    
-    def forward(self,wav,output_wav=False,layer_norm=True):
-        
-
-#         generate SSL feature
-        if self.args.feature!='log1p':
-            rep, layer_results = self.model_SSL(wav, output_layer=self.model_SSL.cfg.encoder_layers, ret_layer_results=True)[0]
-            layer_reps = [x.transpose(0, 1) for x, _ in layer_results]
-        else:
-            layer_reps = None
-            
-        out = self.model_SE(wav,layer_reps=layer_reps,output_wav=output_wav,layer_norm=layer_norm)
-
-        return out
+def MainModel(args):
+    
+    model = BLSTM(args)
+    
+    return model

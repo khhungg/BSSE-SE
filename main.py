@@ -6,7 +6,7 @@ from tensorboardX import SummaryWriter
 import torch.backends.cudnn as cudnn
 import pandas as pd
 import pdb
-
+from models.SE_module import SE_module
 # fix random
 SEED = 999
 random.seed(SEED)
@@ -24,9 +24,10 @@ def get_args():
     parser.add_argument('--batch_size', type=int, default=16)  
     parser.add_argument('--lr', type=float, default=0.0001)
     parser.add_argument('--loss_fn', type=str, default='l1')
-    parser.add_argument('--feature', type=str, default='log1p') # log1p / ssl / cross
+    parser.add_argument('--feature', type=str, default='raw') # raw / ssl / cross
     parser.add_argument('--optim', type=str, default='adam')
     parser.add_argument('--model', type=str, default='BLSTM')    
+    parser.add_argument('--ssl_model', type=str, default=None) # wav2vec2 / hubert / wavlm
     parser.add_argument('--size', type=str, default='base')  # base / large
     parser.add_argument('--finetune_SSL', type=str, default=None) # PF / EF
     parser.add_argument('--gpu', type=str, default='0')
@@ -47,15 +48,15 @@ def get_path(args):
         'noisy':f'{args.data_folder}/noisy_testset_wav_16k/',
         'clean':f'{args.data_folder}/clean_testset_wav_16k/',
         }
-    checkpoint_path = f'./checkpoint/{args.model}_{args.target}_epochs{args.epochs}' \
+    checkpoint_path = f'./checkpoint/{args.model}_{args.ssl_model}_{args.target}_epochs{args.epochs}' \
                     f'_{args.optim}_{args.loss_fn}_batch{args.batch_size}_'\
                     f'lr{args.lr}_{args.feature}_{args.size}_'\
                     f'WS{args.weighted_sum}_FT{args.finetune_SSL}.pth.tar'
-    model_path = f'./save_model/{args.model}_{args.target}_epochs{args.epochs}' \
+    model_path = f'./save_model/{args.model}_{args.ssl_model}_{args.target}_epochs{args.epochs}' \
                     f'_{args.optim}_batch{args.batch_size}_'\
                     f'lr{args.lr}_{args.feature}_{args.size}_'\
                     f'WS{args.weighted_sum}_FT{args.finetune_SSL}.pth.tar'
-    score_path = f'./Result/{args.model}_{args.target}_epochs{args.epochs}' \
+    score_path = f'./Result/{args.model}_{args.ssl_model}_{args.target}_epochs{args.epochs}' \
                     f'_{args.optim}_{args.loss_fn}_batch{args.batch_size}_'\
                     f'lr{args.lr}_{args.feature}_{args.size}_'\
                     f'WS{args.weighted_sum}_FT{args.finetune_SSL}.csv'
@@ -80,8 +81,9 @@ if __name__ == '__main__':
     # tensorboard
     writer = SummaryWriter('/home/khhung/logs')
 
-    exec (f"from models.{args.model.split('_')[0]} import {args.model} as model")
-    model     = model(args)
+#     exec (f"from models.{args.model.split('_')[0]} import {args.model} as model")
+#     model     = model(args)
+    model     = SE_module(args)
     model, epoch, best_loss, optimizer, criterion, device = Load_model(args,model,checkpoint_path, model_path)
     loader = Load_data(args, Train_path)        
     Trainer = Trainer(model, args.epochs, epoch, best_loss, optimizer, 

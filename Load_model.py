@@ -6,6 +6,7 @@ from torch.utils.data import DataLoader
 from sklearn.model_selection import train_test_split
 from torch.utils.data.dataset import Dataset
 from tqdm import tqdm 
+from loss import *
 
 def count_parameters(model):
     return sum(p.numel() for p in model.parameters() if p.requires_grad)
@@ -15,6 +16,7 @@ def Load_model(args,model,checkpoint_path,model_path):
     criterion = {
         'mse'     : nn.MSELoss(),
         'l1'      : nn.L1Loss(),
+        'DPTLoss' : DPTLoss()
     }
     device    = torch.device(f'cuda:{args.gpu}')
     criterion = criterion[args.loss_fn].to(device)

@@ -1,15 +1,9 @@
-#! /usr/bin/python
-# -*- encoding: utf-8 -*-
-
 import torch, os, torchaudio, math, numpy as np, sys
 import torch.nn.functional as F
 from torchaudio import functional as taF
-import os, pdb
-# from pypesq import pesq
+import os
 from pesq import pesq
 from pystoi.stoi import stoi
-from mir_eval.separation import bss_eval_sources
-# os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"   # see issue #152
 
 n_fft      = 400
 win_length = 400
@@ -121,29 +115,11 @@ def cal_score(clean,enhanced):
         s_stoi = 0 
 #     s_pesq = pesq(clean, enhanced, 16000)
     s_pesq = pesq(16000, clean, enhanced, 'wb')
-    s_snr  = si_snr(enhanced,clean)
-    s_sdr  = bss_eval_sources(clean,enhanced,False)[0][0]
     if math.isnan(s_pesq):
         s_pesq=0
     if math.isnan(s_stoi):
         s_stoi=0
-    return round(s_pesq,5), round(s_stoi,5), round(s_snr,5), round(s_sdr,5)
-
-def si_snr(x, s, remove_dc=True):
-
-    def vec_l2norm(x):
-        return np.linalg.norm(x, 2)
-
-    # zero mean, seems do not hurt results
-    if remove_dc:
-        x_zm = x - np.mean(x)
-        s_zm = s - np.mean(s)
-        t = np.inner(x_zm, s_zm) * s_zm / vec_l2norm(s_zm)**2
-        n = x_zm - t
-    else:
-        t = np.inner(x, s) * s / vec_l2norm(s)**2
-        n = x - t
-    return 20 * np.log10(vec_l2norm(t) / vec_l2norm(n))
+    return round(s_pesq,5), round(s_stoi,5)
 
 def progress_bar(epoch, epochs, step, n_step, time, loss, mode):
     line = []
