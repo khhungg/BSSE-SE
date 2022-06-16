@@ -11,6 +11,7 @@ This is the official implementation of our paper *"[Boosting Self-Supervised Emb
 - tqdm 4.60.0
 - scikit-learn 0.24.1
 - pandas 1.2.4
+- fairseq 0.11.0+f97cdf7
 
 You can use pip to install Python depedencies.
 
@@ -36,12 +37,13 @@ Experiment Date | PESQ | CSIG | CBAK | COVL
 2022-04-30 | 3.20 | 4.52 | 3.58 | 3.88
 
 ## Usage
-Please download the pretrained [WavLM](https://github.com/microsoft/unilm/tree/master/wavlm) first and put the weight under the `save_model` folder (e.g, `save_model/WavLM-Base+.pt`). Run the following command to train the speech enhancement model:
+Please download the pretrained [WavLM](https://github.com/microsoft/unilm/tree/master/wavlm) first and put the weight under the `save_model` folder (e.g, `save_model/WavLM-Base+.pt`). Wav2vec and Hubert model can be downloaded from [here]() and [here](). Run the following command to train the speech enhancement model:
 ```
 python main.py \
     --data_folder <root/dir/of/dataset> 
     --model BLSTM 
-    --feature <log1p/ssl/cross> 
+    --ssl_model <wavlm/hubert/wav2vec2>
+    --feature <raw/ssl/cross> 
     --size <base/large> 
     --target IRM 
     --finetune_SSL <PF/EF/None> 
