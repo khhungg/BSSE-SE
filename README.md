@@ -41,15 +41,14 @@ Experiment Date | PESQ | CSIG | CBAK | COVL
 ## Pre-Trained Models
 Please download the pretrained model first if you want to used ssl feature and put the weight under the `save_model` folder (e.g, `save_model/WavLM-Base+.pt`). The pretrain model can be downloaded by below link.
 
-Model | Pre-training Dataset | Fine-tuning Dataset | Model
+Model | Pre-training Dataset | Fine-tuning | Model
 |---|---|---|---
-WavLM Base |  [960 hrs LibriSpeech](http://www.openslr.org/12)| -  | [Azure Storage](https://msranlcmtteamdrive.blob.core.windows.net/share/wavlm/WavLM-Base.pt?sv=2020-04-08&st=2021-11-05T00%3A35%3A31Z&se=2022-11-06T00%3A35%3A00Z&sr=b&sp=r&sig=JljnRVzyHY6AjHzhVmHV5KyQQCvvGfgp9D2M02oGJBU%3D) <br> [Google Drive](https://drive.google.com/file/d/19-C7SMQvEFAYLG5uc47NX_MY03JCbI4x/view?usp=sharing)
 WavLM Base+ | [60k hrs Libri-Light](https://github.com/facebookresearch/libri-light) + [10k hrs GigaSpeech](https://github.com/SpeechColab/GigaSpeech) + [24k hrs VoxPopuli](https://github.com/facebookresearch/voxpopuli/tree/main)| -  |  [Azure Storage](https://msranlcmtteamdrive.blob.core.windows.net/share/wavlm/WavLM-Base+.pt?sv=2020-04-08&st=2021-11-05T00%3A34%3A47Z&se=2022-10-06T00%3A34%3A00Z&sr=b&sp=r&sig=Gkf1IByHaIn1t%2FVEd9D6WHjZ3zu%2Fk5eSdoj21UytKro%3D) <br> [Google Drive](https://drive.google.com/file/d/1PlbT_9_B4F9BsD_ija84sUTVw7almNX8/view?usp=sharing) 
 WavLM Large | [60k hrs Libri-Light](https://github.com/facebookresearch/libri-light) + [10k hrs GigaSpeech](https://github.com/SpeechColab/GigaSpeech) + [24k hrs VoxPopuli](https://github.com/facebookresearch/voxpopuli/tree/main)| -  | [Azure Storage](https://msranlcmtteamdrive.blob.core.windows.net/share/wavlm/WavLM-Large.pt?sv=2020-08-04&st=2021-11-22T10%3A03%3A53Z&se=2022-11-23T10%3A03%3A00Z&sr=b&sp=r&sig=3kB8dwTCyIS8YQ7gW5oXmDrXV%2FAaLmoxBS37oPpFsz4%3D) <br> [Google Drive](https://drive.google.com/file/d/1rMu6PQ9vz3qPz4oIm72JDuIr5AHIbCOb/view?usp=sharing) 
 Wav2Vec 2.0 Base | [Librispeech](http://www.openslr.org/12) | -  | [download](https://dl.fbaipublicfiles.com/fairseq/wav2vec/wav2vec_small.pt)
 Wav2Vec 2.0 Large | [Librispeech](http://www.openslr.org/12)  | -  | [download](https://dl.fbaipublicfiles.com/fairseq/wav2vec/libri960_big.pt)
-Wav2Vec 2.0 Large (LV-60)* | [Libri-Light](https://github.com/facebookresearch/libri-light) | -  |[download](https://dl.fbaipublicfiles.com/fairseq/wav2vec/wav2vec_vox_new.pt)
-
+HuBERT Base (~95M params) | [Librispeech](http://www.openslr.org/12) 960 hr | - | [download](https://dl.fbaipublicfiles.com/hubert/hubert_base_ls960.pt)
+HuBERT Large (~316M params) | [Libri-Light](https://github.com/facebookresearch/libri-light) 60k hr | - | [download](https://dl.fbaipublicfiles.com/hubert/hubert_large_ll60k.pt)
 
 
 
