@@ -80,7 +80,7 @@ class Trainer:
     def _train_epoch(self):
         self.train_loss = 0
         self.model.train()
-        if not self.args.finetune_SSL:
+        if not self.args.finetune_SSL and self.args.feature!='raw':
             self.model.model_SSL.eval()
         step = 0
         t_start =  time.time()
