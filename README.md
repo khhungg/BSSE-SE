@@ -36,8 +36,6 @@ Experiment Date | PESQ | CSIG | CBAK | COVL
 -|-|-|-|-
 2022-04-30 | 3.20 | 4.52 | 3.58 | 3.88
 
-## Usage
-
 ## Pre-Trained Models
 Please download the pretrained model first if you want to used ssl feature and put the weight under the `save_model` folder (e.g, `save_model/WavLM-Base+.pt`). The pretrain model can be downloaded by below link.
 
@@ -53,7 +51,7 @@ HuBERT Large (~316M params) | [Libri-Light](https://github.com/facebookresearch/
 
 
 
-
+## Usage
 Run the following command to train the speech enhancement model:
 ```
 python main.py \
