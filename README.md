@@ -53,7 +53,8 @@ HuBERT Large (~316M params) | [Libri-Light](https://github.com/facebookresearch/
 
 
 
-Please download the pretrained [WavLM](https://github.com/microsoft/unilm/tree/master/wavlm) first and put the weight under the `save_model` folder (e.g, `save_model/WavLM-Base+.pt`). Wav2vec and Hubert model can be downloaded from [here]() and [here](). Run the following command to train the speech enhancement model:
+
+Run the following command to train the speech enhancement model:
 ```
 python main.py \
     --data_folder <root/dir/of/dataset> 
@@ -81,6 +82,39 @@ Please cite the following paper if you find the codes useful in your research.
   author={Hung, Kuo-Hsuan and Fu, Szu-wei and Tseng, Huan-Hsin and Chiang, Hsin-Tien and Tsao, Yu and Lin, Chii-Wann},
   journal={arXiv preprint arXiv:2204.03339},
   year={2022}
+}
+```
+Please cite the following paper if you use the following pretrained ssl model
+**WavLM**
+```
+@article{chen2021wavlm,
+  title={Wavlm: Large-scale self-supervised pre-training for full stack speech processing},
+  author={Chen, Sanyuan and Wang, Chengyi and Chen, Zhengyang and Wu, Yu and Liu, Shujie and Chen, Zhuo and Li, Jinyu and Kanda, Naoyuki and Yoshioka, Takuya and Xiao, Xiong and others},
+  journal={arXiv preprint arXiv:2110.13900},
+  year={2021}
+}
+```
+**Wav2vec 2.0**
+```
+@article{baevski2020wav2vec,
+  title={wav2vec 2.0: A framework for self-supervised learning of speech representations},
+  author={Baevski, Alexei and Zhou, Yuhao and Mohamed, Abdelrahman and Auli, Michael},
+  journal={Advances in Neural Information Processing Systems},
+  volume={33},
+  pages={12449--12460},
+  year={2020}
+}
+```
+**HuBert**
+```
+@article{hsu2021hubert,
+  title={Hubert: Self-supervised speech representation learning by masked prediction of hidden units},
+  author={Hsu, Wei-Ning and Bolte, Benjamin and Tsai, Yao-Hung Hubert and Lakhotia, Kushal and Salakhutdinov, Ruslan and Mohamed, Abdelrahman},
+  journal={IEEE/ACM Transactions on Audio, Speech, and Language Processing},
+  volume={29},
+  pages={3451--3460},
+  year={2021},
+  publisher={IEEE}
 }
 ```
 
