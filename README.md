@@ -82,7 +82,8 @@ Please cite the following paper if you find the codes useful in your research.
   year={2022}
 }
 ```
-Please cite the following paper if you use the following pretrained ssl model
+Please cite the following paper if you use the following pretrained ssl model.
+
 **WavLM**
 ```
 @article{chen2021wavlm,
