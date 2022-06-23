@@ -29,12 +29,12 @@ sox <48K.wav> -r 16000 -c 1 -b 16 <16k.wav>
 ```
 
 ### Pretrained enhancement model weight
-Please download the model weights from [here](https://drive.google.com/file/d/1s2EzhwCEvfJ-4COIz4LcdVXI8WexsJZE/view?usp=sharing), and make a folder named `save_model` then put the weight file under the folder. 
+Please download the model weights from [here](https://drive.google.com/file/d/1ZB9iRS-CckRAVjyqwcR66Fh1CHdlRHJw/view?usp=sharing), and make a folder named `save_model` then put the weight file under the folder. 
 
 ### Result on Voice Bank--Demand
 Experiment Date | PESQ | CSIG | CBAK | COVL
 -|-|-|-|-
-2022-04-30 | 3.20 | 4.52 | 3.58 | 3.88
+2022-04-30 | 3.20 | 4.53 | 3.60 | 3.88
 
 ## Pre-Trained Models
 Please download the pretrained model first if you want to used ssl feature and put the weight under the `save_model` folder (e.g, `save_model/WavLM-Base+.pt`). The pretrain model can be downloaded by below link.
